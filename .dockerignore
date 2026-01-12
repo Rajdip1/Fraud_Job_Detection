@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+venv/
+data/
+data_cleaning/
+data_processing/
+EDA + Visualization/
+model_notebooks/
+.git/
+.ipynb_checkpoints/
