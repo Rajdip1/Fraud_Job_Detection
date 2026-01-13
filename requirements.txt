@@ -1,5 +1,4 @@
 fastapi
-pydantic
 uvicorn[standard]
 pandas
 numpy
@@ -9,14 +8,7 @@ lightgbm
 joblib
 matplotlib
 seaborn
-scipy
-jupyter
-notebook
-ipykernel
-fastapi
-uvicorn
-pandas
-scikit-learn
-xgboost
-joblib
-numpy
+
+
+
+
