@@ -4,7 +4,7 @@ import requests
 # =========================
 # CONFIG
 # =========================
-API_URL = "https://YOUR-FASTAPI-URL.onrender.com/predict"
+API_URL = "https://fraud-job-detection-backend.onrender.com/predict"
 
 st.set_page_config(page_title="Fraud Job Detection", layout="centered")
 
@@ -33,13 +33,13 @@ employment_type = st.selectbox(
 )
 
 employment_features = {
-    "employment_type_Full-time": 0,
-    "employment_type_Part-time": 0,
+    "employment_type_Full_time": 0,
+    "employment_type_Part_time": 0,
     "employment_type_Temporary": 0,
     "employment_type_Other": 0,
     "employment_type_Unknown": 0,
 }
-employment_features[f"employment_type_{employment_type}"] = 1
+employment_features[f"employment_type_{employment_type.replace('-', '_')}"] = 1
 
 # =========================
 # Predict
