@@ -30,8 +30,11 @@ def call_backend_api(payload, retries=2, timeout=30):
                 return response
         except requests.exceptions.RequestException:
             if attempt < retries - 1:
-                time.sleep(5)  # wait before retry
+                time.sleep(5)
     return None
+
+def count_words(text):
+    return len(text.split()) if text.strip() else 0
 
 # =========================
 # UI
@@ -49,14 +52,22 @@ st.divider()
 # =========================
 job_description = st.text_area("Job Description", height=180)
 
+# 🔹 AUTO WORD COUNT
+jd_word_count = count_words(job_description)
+
+st.text_input(
+    "Job Description Word Count",
+    value=jd_word_count,
+    disabled=True
+)
+
+# 🚀 OPTIONAL UX WARNING
+if jd_word_count > 0 and jd_word_count < 25:
+    st.warning("Very short job descriptions are often suspicious.")
+
 telecommuting = st.selectbox("Telecommuting", [0, 1])
 has_company_logo = st.selectbox("Has Company Logo", [0, 1])
 has_questions = st.selectbox("Has Screening Questions", [0, 1])
-jd_word_count = st.number_input(
-    "Job Description Word Count",
-    min_value=0,
-    value=50
-)
 req_exp_enc = st.selectbox("Experience Required (Encoded)", [0, 1])
 
 employment_type = st.selectbox(
