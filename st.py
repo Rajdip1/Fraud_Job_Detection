@@ -13,19 +13,12 @@ st.set_page_config(
 )
 
 # =========================
-# HELPER FUNCTION
+# HELPER FUNCTIONS
 # =========================
 def call_backend_api(payload, retries=2, timeout=30):
-    """
-    Calls backend API with retry logic to handle cold starts.
-    """
     for attempt in range(retries):
         try:
-            response = requests.post(
-                API_URL,
-                json=payload,
-                timeout=timeout
-            )
+            response = requests.post(API_URL, json=payload, timeout=timeout)
             if response.status_code == 200:
                 return response
         except requests.exceptions.RequestException:
@@ -35,6 +28,9 @@ def call_backend_api(payload, retries=2, timeout=30):
 
 def count_words(text):
     return len(text.split()) if text.strip() else 0
+
+def yes_no_to_int(value):
+    return 1 if value == "Yes" else 0
 
 # =========================
 # UI
@@ -52,23 +48,23 @@ st.divider()
 # =========================
 job_description = st.text_area("Job Description", height=180)
 
-# 🔹 AUTO WORD COUNT
+# 🔹 Auto word count
 jd_word_count = count_words(job_description)
+st.text_input("Job Description Word Count", value=jd_word_count, disabled=True)
 
-st.text_input(
-    "Job Description Word Count",
-    value=jd_word_count,
-    disabled=True
-)
-
-# 🚀 OPTIONAL UX WARNING
 if jd_word_count > 0 and jd_word_count < 25:
     st.warning("Very short job descriptions are often suspicious.")
 
-telecommuting = st.selectbox("Telecommuting", [0, 1])
-has_company_logo = st.selectbox("Has Company Logo", [0, 1])
-has_questions = st.selectbox("Has Screening Questions", [0, 1])
-req_exp_enc = st.selectbox("Experience Required (Encoded)", [0, 1])
+# 🔹 Yes / No UI (mapped internally)
+telecommuting_ui = st.selectbox("Telecommuting", ["No", "Yes"])
+has_company_logo_ui = st.selectbox("Has Company Logo", ["No", "Yes"])
+has_questions_ui = st.selectbox("Has Screening Questions", ["No", "Yes"])
+req_exp_ui = st.selectbox("Experience Required", ["No", "Yes"])
+
+telecommuting = yes_no_to_int(telecommuting_ui)
+has_company_logo = yes_no_to_int(has_company_logo_ui)
+has_questions = yes_no_to_int(has_questions_ui)
+req_exp_enc = yes_no_to_int(req_exp_ui)
 
 employment_type = st.selectbox(
     "Employment Type",
@@ -117,8 +113,13 @@ if st.button("🔍 Predict Fraud"):
             result = response.json()
 
             st.subheader("Prediction Result")
-            st.write(f"**Fraud Probability:** `{result['fraud_probability']}`")
-            st.write(f"**Threshold Used:** `{result['threshold_used']}`")
+
+            fraud_prob = result["fraud_probability"]
+            threshold = result["threshold_used"]
+
+            st.progress(fraud_prob)
+            st.write(f"**Fraud Probability:** `{fraud_prob:.2f}`")
+            st.write(f"**Threshold Used:** `{threshold}`")
 
             if result["prediction"] == "Fraud":
                 st.error("🚨 Fraudulent Job")
