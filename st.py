@@ -101,7 +101,7 @@ if st.button("🔍 Predict Fraud"):
             **employment_features
         }
 
-        with st.spinner("Waking up backend... ⏳"):
+        with st.spinner("Waking up backend.... ⏳"):
             response = call_backend_api(payload)
 
         if response is None:
