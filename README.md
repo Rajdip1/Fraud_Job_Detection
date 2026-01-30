@@ -149,3 +149,10 @@ Stored in `model/` and loaded at runtime:
 ## 📜 License
 
 MIT License
+
+---
+
+## 👤 Author
+**Rajdip**
+
+If you found this project useful, feel free to ⭐ the repository.
