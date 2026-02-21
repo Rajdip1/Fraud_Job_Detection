@@ -7,6 +7,11 @@ The project includes a trained ML pipeline, a **FastAPI prediction service**, an
 
 ---
 
+# System Architecture
+<img width="1024" height="1536" alt="System Architecture" src="https://github.com/user-attachments/assets/af2ae6e4-98c1-402c-b353-135996498a5d" />
+
+---
+
 ## 📌 Project Highlights
 
 - 🧠 Trained ML pipeline (scikit-learn / XGBoost)
