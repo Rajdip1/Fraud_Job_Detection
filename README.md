@@ -4,6 +4,7 @@ An end-to-end **Machine Learning application** that classifies job postings as *
 The project includes a trained ML pipeline, a **FastAPI prediction service**, and a **Streamlit demo UI** for real-time inference.
 
 **Status:** End-to-end prototype (model + API + frontend)
+
 <img width="1731" height="909" alt="Social_Preview" src="https://github.com/user-attachments/assets/ef81279a-1c6b-4b97-962e-5e49c6d1ede5" />
 
 
