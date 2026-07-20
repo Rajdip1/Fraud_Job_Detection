@@ -4,11 +4,14 @@ An end-to-end **Machine Learning application** that classifies job postings as *
 The project includes a trained ML pipeline, a **FastAPI prediction service**, and a **Streamlit demo UI** for real-time inference.
 
 **Status:** End-to-end prototype (model + API + frontend)
+<img width="1731" height="909" alt="Social_Preview" src="https://github.com/user-attachments/assets/ef81279a-1c6b-4b97-962e-5e49c6d1ede5" />
+
 
 ---
 
 # System Architecture
-<img width="1024" height="1536" alt="System Architecture" src="https://github.com/user-attachments/assets/cbcd7d9c-0427-4837-a30d-e0e9e6b4b7e3" />
+<img width="1693" height="929" alt="Architecture_diagram" src="https://github.com/user-attachments/assets/62bfeb9d-33da-422f-bc41-4c112d587d7a" />
+
 
 ---
 
